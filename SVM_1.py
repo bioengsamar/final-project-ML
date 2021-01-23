@@ -24,7 +24,7 @@ def predict(x, y_actual):
     
 
 if __name__ == "__main__":
-    path="fetal_health.csv" #1-> Normal, 2-> Suspect,  3-> Pathological
+    path="fetal_health.csv" #lables= 1-> Normal, 2-> Suspect,  3-> Pathological
     x, y=load_data(path)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.1,random_state=42)
     accuracy= model(X_train, X_test, y_train, y_test)
@@ -32,4 +32,4 @@ if __name__ == "__main__":
     
     y_pred=predict(X_test[60], y_test[60])
     
-    print(y_pred)
+    print(y_pred) #(False, ('y_actual:', 2.0))
