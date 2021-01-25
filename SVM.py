@@ -6,21 +6,18 @@ def load_data(filename):
     data = pd.read_csv(filename)
     x=data.iloc[:,0:21]
     y=data.iloc[:,21]
+    x = x - x.mean() #calculate mean to center the data.
+    x = (x - x.min()) / (x.max() - x.min()) #Standard normalization
+    x = (x * 2) -1 #scaling between 1, -1
     return x.values, y.values
 
 def model(X_train, X_test, y_train, y_test):
-    global model
     model = svm.SVC(decision_function_shape='ovo') # SVM for multi-class classification using built-in one-vs-one method
     model.fit(X_train,y_train)
     accuracy= model.score(X_test ,y_test)
     return accuracy
 
-def predict(x, y_actual):
-    yhat = model.predict(x.reshape(1,-1))
-    if yhat == y_actual:
-        return True, yhat
-    else:
-        return False, ('y_actual:', y_actual)
+
     
 
 if __name__ == "__main__":
@@ -28,8 +25,7 @@ if __name__ == "__main__":
     x, y=load_data(path)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.1,random_state=42)
     accuracy= model(X_train, X_test, y_train, y_test)
-    print('Model accuracy is: ', accuracy) #0.8403755868544601
+    print('Model accuracy is: ', accuracy) #0.8403755868544601 #without center data & without normalization
+                                           #0.9107981220657277 with center data & without normalization
+                                           #0.9248826291079812 with center data and normalization
     
-    y_pred=predict(X_test[60], y_test[60])
-    
-    print(y_pred) #(False, ('y_actual:', 2.0))
