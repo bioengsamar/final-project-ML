@@ -21,11 +21,11 @@ def model(X_train, X_test, y_train, y_test):
     
 
 if __name__ == "__main__":
-    path="fetal_health.csv" #lables= 1-> Normal, 2-> Suspect,  3-> Pathological
+    path="fetal_health.csv" #labels= 1-> Normal, 2-> Suspect,  3-> Pathological
     x, y=load_data(path)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.1,random_state=42)
     accuracy= model(X_train, X_test, y_train, y_test)
     print('Model accuracy is: ', accuracy) #0.8403755868544601 #without center data & without normalization
                                            #0.9107981220657277 with center data & without normalization
-                                           #0.9248826291079812 with center data and normalization
+                                           #0.9248826291079812 with center data and normalization & scaling
     
