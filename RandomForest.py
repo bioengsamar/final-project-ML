@@ -12,7 +12,7 @@ def load_data(filename):
     return x.values,X_scaled, y.values
 
 def model(X_train, X_test, y_train, y_test):
-    model = RandomForestClassifier(n_estimators=100 ,random_state=50) # number of trees =100
+    model = RandomForestClassifier(n_estimators=100 ,random_state=50 ,criterion="gini",max_depth=10)
     model.fit(X_train,y_train)
     y_pred=model.predict(X_test)
     accuracy= model.score(X_test ,y_test)
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     x,x_s, y=load_data(path)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.3,random_state=5000) 
     accuracy,labels_predected= model(X_train, X_test, y_train, y_test)
-    print(f'Random forest model accuracy withh 100 tree (original data) accuracy is:  {round(accuracy*100,2)}') #94.2
+    print(f'Random forest model accuracy withh 100 tree (original data) accuracy is:  {round(accuracy*100,2)}') #94.36
     X_train, X_test, y_train, y_test = train_test_split(x_s, y, test_size=0.3,random_state=5000)
     accuracy,labels_predected_for_Scaled_Data= model(X_train, X_test, y_train, y_test)
     print(f'Random forest model accuracy withh 100 tree (standrized data) accuracy is: {round(accuracy*100,2)}') #94.51
