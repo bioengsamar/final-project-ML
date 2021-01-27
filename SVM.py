@@ -12,7 +12,7 @@ def load_data(filename):
     return x.values, y.values
 
 def model(X_train, X_test, y_train, y_test):
-    model = svm.SVC(decision_function_shape='ovo') # SVM for multi-class classification using built-in one-vs-one method
+    model = svm.SVC(decision_function_shape='ovo', kernel='poly', degree=6) # SVM for multi-class classification using built-in one-vs-one method
     model.fit(X_train,y_train)
     accuracy= model.score(X_test ,y_test)
     return accuracy
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     x, y=load_data(path)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.1,random_state=42)
     accuracy= model(X_train, X_test, y_train, y_test)
-    print('Model accuracy is: ', accuracy) #0.8403755868544601 #without center data & without normalization
-                                           #0.9107981220657277 with center data & without normalization
-                                           #0.9248826291079812 with center data and normalization & scaling
+    print('Model accuracy is: ', accuracy) #0.8779342723004695 without and with center data & without normalization, scaling
+                                           #0.9295774647887324 with center data and normalization & without scaling
+                                           #0.9389671361502347 with center data, normalization & scaling
     

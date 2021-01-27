@@ -23,7 +23,7 @@ if __name__ == "__main__":
     x, y=load_data(path)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.1,random_state=42)
     accuracy= model(X_train, X_test, y_train, y_test)
-    print('Model accuracy is: ', accuracy) #0.9154929577464789 with normalization & scaling
-                                           #0.8873239436619719 without scaling
-                                           #0.8732394366197183 without normalization
-                                           #0.7981220657276995 without center the data
+    print('Model accuracy is: ', accuracy) #0.9154929577464789 with center data, normalization & scaling
+                                           #0.8873239436619719 with center data, normalization & without scaling
+                                           #0.8732394366197183 with center data, without normalization and scaling
+                                           #0.7981220657276995 without center the data, normalization and scaling
