@@ -23,7 +23,7 @@ def model(X_train, X_test, y_train, y_test):
     
 
 if __name__ == "__main__":
-    path="fetal_health.csv" #lables= 1-> Normal, 2-> Suspect,  3-> Pathological
+    path="fetal_health.csv" #labels= 1-> Normal, 2-> Suspect,  3-> Pathological
     x,x_s, y=load_data(path)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.3,random_state=5000) 
     accuracy,labels_predected= model(X_train, X_test, y_train, y_test)
